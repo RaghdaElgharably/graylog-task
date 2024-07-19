@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "ClientDeviceType": {
+      "type": "string"
+    },
+    "ClientIP": {
+      "type": "string"
+    },
+    "ClientIPClass": {
+      "type": "string"
+    },
+    "ClientStatus": {
+      "type": "integer"
+    },
+    "ClientRequestBytes": {
+      "type": "integer"
+    },
+    "ClientRequestReferer": {
+      "type": "string"
+    },
+    "ClientRequestURI": {
+      "type": "string"
+    },
+    "ClientRequestUserAgent": {
+      "type": "string"
+    },
+    "ClientSrcPort": {
+      "type": "integer"
+    },
+    "EdgeServerIP": {
+      "type": "string"
+    },
+    "EdgeStartTimestamp": {
+      "type": "integer"
+    },
+    "DestinationIP": {
+      "type": "string"
+    },
+    "OriginResponseBytes": {
+      "type": "integer"
+    },
+    "OriginResponseTime": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "ClientDeviceType",
+    "ClientIP",
+    "ClientIPClass",
+    "ClientStatus",
+    "ClientRequestBytes",
+    "ClientRequestReferer",
+    "ClientRequestURI",
+    "ClientRequestUserAgent",
+    "ClientSrcPort",
+    "EdgeServerIP",
+    "EdgeStartTimestamp",
+    "DestinationIP",
+    "OriginResponseBytes",
+    "OriginResponseTime"
+  ]
+}

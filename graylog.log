@@ -1,0 +1,17 @@
+2024-07-19 22:51:33 ERROR o.g.task.helpers.CmdOptionsHandler - Missing required argument: -f/--file
+2024-07-19 22:51:33 INFO  o.g.task.helpers.CmdOptionsHandler - Input file path: 
+2024-07-19 22:51:33 ERROR o.g.task.helpers.CmdOptionsHandler - Input file  does not exist.
+2024-07-19 22:51:33 INFO  o.g.task.helpers.CmdOptionsHandler - Input file path: C:\projects\graylog\graylog-task\target\test-classes\logs.txt
+2024-07-19 22:51:35 DEBUG o.g.task.services.GraylogSender - Message org.graylog.task.models.LogMessage@59db6a41 sent to Graylog successfully.
+2024-07-19 22:51:35 ERROR o.g.task.services.GraylogSender - There was an error sending the Gelf message. Status code: 500. Response is Response{protocol=http/1.1, code=500, message=Internal Server Error, url=https://api.graylog.com/} 
+2024-07-19 22:51:36 ERROR o.g.t.validators.JsonSchemaValidator -  The JSON object: {"person": x, "age":20, "Location":DE} is in valid. The error message is required key [ClientDeviceType] not found. 
+2024-07-19 22:51:36 ERROR o.g.t.validators.JsonSchemaValidator -  The JSON object: {"person": a, "age":25, "Location":DE} is in valid. The error message is required key [ClientDeviceType] not found. 
+2024-07-19 22:51:36 ERROR o.g.t.validators.JsonSchemaValidator -  The JSON object: {"person": d, "age":70, "Location":DE} is in valid. The error message is required key [ClientDeviceType] not found. 
+2024-07-19 22:51:36 ERROR o.g.t.validators.JsonSchemaValidator -  The JSON object: {"person": f, "age":50, "Location":DE} is in valid. The error message is required key [ClientDeviceType] not found. 
+2024-07-19 22:51:36 ERROR o.g.t.validators.JsonSchemaValidator -  The JSON object: {"person": x, "age":20, "Location":DE} is in valid. The error message is required key [ClientDeviceType] not found. 
+2024-07-19 22:51:36 ERROR o.g.t.validators.JsonSchemaValidator -  The JSON object: {"person": a, "age":25, "Location":DE} is in valid. The error message is required key [ClientDeviceType] not found. 
+2024-07-19 22:51:36 ERROR o.g.t.validators.JsonSchemaValidator -  The JSON object: {"person": d, "age":70, "Location":DE} is in valid. The error message is required key [ClientDeviceType] not found. 
+2024-07-19 22:51:36 ERROR o.g.t.validators.JsonSchemaValidator -  The JSON object: {"person": f, "age":50, "Location":DE} is in valid. The error message is required key [ClientDeviceType] not found. 
+2024-07-19 22:51:36 ERROR o.g.t.validators.JsonSchemaValidator -  The JSON object: {"ClientDeviceType": "mobile","ClientIP": "192.168.239.245","ClientIPClass": "noRecord","ClientStatus": 200 is in valid. The error message is Expected a ',' or '}' at 108 [character 109 line 1]. 
+2024-07-19 22:51:36 ERROR o.g.t.validators.JsonSchemaValidator -  The JSON object: {"ClientDeviceType": "mobile","ClientIP": "192.168.239.245","ClientIPClass": "noRecord"} is in valid. The error message is required key [ClientStatus] not found. 
+2024-07-19 22:51:36 ERROR o.g.t.validators.JsonSchemaValidator - The json Schema couldn't be loaded and an exception is thrown: java.io.FileNotFoundException: schemaPath (The system cannot find the file specified)

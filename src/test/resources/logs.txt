@@ -1,0 +1,4 @@
+{"person": x, "age":20, "Location":DE}
+{"person": a, "age":25, "Location":DE}
+{"person": d, "age":70, "Location":DE}
+{"person": f, "age":50, "Location":DE}
