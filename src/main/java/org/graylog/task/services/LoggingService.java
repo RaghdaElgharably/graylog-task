@@ -39,7 +39,7 @@ public class LoggingService {
 
     List<String> lines = FileHelper.readFile(dataPath);
     for (String line : lines) {
-      //Only parse and log the line if it fulfills the schema.
+      //Only parse and log the line if it2 fulfills the schema.
       if (JsonSchemaValidator.isValidSchema(line, SchemaFilePath)) {
         LogMessage logMessage = JsonLogParser.parseJson(line, LogMessage.class);
         try {
