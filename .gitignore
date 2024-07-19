@@ -36,3 +36,7 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+###the log file and .iml
+grayload-task.iml
+graylog.log
