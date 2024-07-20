@@ -1,14 +1,19 @@
 package org.graylog.task.helpers;
 
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertNotNull;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.IOException;
 import java.util.List;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class FileHelperTest {
 
+  /**
+   * tests reading a file correctly.
+   * @throws IOException
+   */
   @Test
   public void testCorrectlyReadingFile() throws IOException {
     String path = FileHelper.getFullPath("logs.txt", FileHelperTest.class);

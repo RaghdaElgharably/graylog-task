@@ -7,29 +7,28 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-import org.graylog.task.models.LogMessage;
+import org.graylog.task.models.GelfMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
+@Service
 public class GraylogSender {
 
   private static final Logger logger = LoggerFactory.getLogger(GraylogSender.class);
   private static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
   private final OkHttpClient httpClient;
   private final ObjectMapper objectMapper;
-  private final String grayLogUrl; // the url to graylog server
+  @Value("${graylog.server.url}")
+  private String grayLogUrl; // the url to graylog server
 
-  public GraylogSender(String grayLogUrl) {
-    this.httpClient = new OkHttpClient();
-    this.objectMapper = new ObjectMapper();
-    this.grayLogUrl = grayLogUrl;
-  }
 
-  public GraylogSender(OkHttpClient httpClient, ObjectMapper objectMapper,
-      String grayLogUrl) {
+  @Autowired
+  public GraylogSender(OkHttpClient httpClient, ObjectMapper objectMapper) {
     this.httpClient = httpClient;
     this.objectMapper = objectMapper;
-    this.grayLogUrl = grayLogUrl;
   }
 
   /**
@@ -40,7 +39,7 @@ public class GraylogSender {
    * @throws IOException if the httpclient call isn't executed or the message isn't serialized to a
    *                     string.
    */
-  public boolean sendGelfMessage(LogMessage logMessage) throws IOException {
+  public boolean sendGelfMessage(GelfMessage logMessage) throws IOException {
     String jsonMessage = objectMapper.writeValueAsString(logMessage);
 
     RequestBody body = RequestBody.create(jsonMessage, JSON);
@@ -61,4 +60,7 @@ public class GraylogSender {
     return true;
   }
 
+  public void setGrayLogUrl(String grayLogUrl) {
+    this.grayLogUrl = grayLogUrl;
+  }
 }

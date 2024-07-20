@@ -78,12 +78,12 @@ public class LogMessage {
 
   @Override
   public boolean equals(Object obj) {
-      if (this == obj) {
-          return true;
-      }
-      if (obj == null || getClass() != obj.getClass()) {
-          return false;
-      }
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null || getClass() != obj.getClass()) {
+      return false;
+    }
     LogMessage logMessage = (LogMessage) obj;
     return Objects.equals(clientDeviceType, logMessage.clientDeviceType) &&
         Objects.equals(clientIP, logMessage.clientIP) && Objects.equals(clientIPClass,
@@ -109,6 +109,11 @@ public class LogMessage {
 
   @Override
   public String toString() {
-    return super.toString();
+    return "[clientDeviceType= "+ clientDeviceType+" , clientIP= "+clientIP+" , clientIPClass= "+ clientIPClass+ " , "
+        + "clientStatus= "+ clientStatus+" , clientRequestBytes= "+ clientRequestBytes+" , clientRequestReferer= "
+        + " "+clientRequestReferer+" , clientRequestURI= "+clientRequestURI+" , clientRequestUserAgent= "
+        + " "+clientRequestUserAgent+" , clientSrcPort= "+clientSrcPort+" , edgeServerIP= "+edgeServerIP+" , "
+        + "edgeStartTimestamp= "+edgeStartTimestamp+" , destinationIP= "+destinationIP+" , originResponseBytes= "+
+        originResponseBytes+" , originResponseTime= "+originResponseTime+"]";
   }
 }

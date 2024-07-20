@@ -1,4 +1,6 @@
-package org.graylog.task;
+package org.graylog.task.it;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 import okhttp3.mockwebserver.MockResponse;
@@ -6,15 +8,17 @@ import okhttp3.mockwebserver.MockWebServer;
 import org.graylog.task.helpers.FileHelper;
 import org.graylog.task.services.GraylogSender;
 import org.graylog.task.services.LoggingService;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 /**
  * integration test that tests the happy scenario. It reads a file that has 2 logs, validates them
  * and then send them to the mock server.
  */
+@SpringBootTest
 public class LoggingServiceIT {
 
   private static final String schemaPath = FileHelper.getFullPath("testJsonSchema.json",
@@ -24,17 +28,19 @@ public class LoggingServiceIT {
   private LoggingService loggingService;
 
   private MockWebServer mockWebServer;
+  @Autowired
+  private GraylogSender graylogSender;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     mockWebServer = new MockWebServer();
     mockWebServer.start();
     String grayServerUrl = mockWebServer.url("/").toString();
-    GraylogSender graylogSender = new GraylogSender(grayServerUrl);
+    graylogSender.setGrayLogUrl(grayServerUrl);
     loggingService = new LoggingService(graylogSender);
   }
 
-  @After
+  @AfterEach
   public void tearDown() throws Exception {
     mockWebServer.shutdown();
   }
@@ -44,6 +50,6 @@ public class LoggingServiceIT {
     mockWebServer.enqueue(new MockResponse().setResponseCode(200));
     mockWebServer.enqueue(new MockResponse().setResponseCode(200));
     loggingService.logFromFile(dataPath, schemaPath);
-    Assert.assertEquals(2, mockWebServer.getRequestCount());
+    assertEquals(2, mockWebServer.getRequestCount());
   }
 }

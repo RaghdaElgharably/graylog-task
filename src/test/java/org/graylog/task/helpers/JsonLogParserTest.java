@@ -1,16 +1,20 @@
 package org.graylog.task.helpers;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import junit.framework.TestCase;
-import org.graylog.task.models.LogMessage;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class JsonLogParserTest extends TestCase {
+import com.fasterxml.jackson.core.JsonProcessingException;
+import org.graylog.task.models.LogMessage;
+import org.junit.jupiter.api.Test;
+
+public class JsonLogParserTest {
 
   /**
    * Checks that a json object is correctly parsed
    *
    * @throws JsonProcessingException
    */
+  @Test
   public void testCorrectJsonLogParsing() throws JsonProcessingException {
     String clientDeviceType = "mobile";
     String clientIP = "192.168.239.245";

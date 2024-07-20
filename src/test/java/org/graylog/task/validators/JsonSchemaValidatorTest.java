@@ -1,10 +1,11 @@
 package org.graylog.task.validators;
 
-import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.assertTrue;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.graylog.task.helpers.FileHelper;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class JsonSchemaValidatorTest {
 

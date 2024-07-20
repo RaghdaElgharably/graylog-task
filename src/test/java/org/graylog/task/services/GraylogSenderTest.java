@@ -1,6 +1,8 @@
 package org.graylog.task.services;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -14,10 +16,9 @@ import okhttp3.Protocol;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
-import org.graylog.task.models.LogMessage;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.graylog.task.models.GelfMessage;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -30,12 +31,17 @@ public class GraylogSenderTest {
   private ObjectMapper mockObjectMapper;
   private GraylogSender graylogSender;
 
-  @Before
+  @BeforeEach
   public void setUp() throws IOException {
     MockitoAnnotations.openMocks(this);
-    graylogSender = new GraylogSender(mockHttpClient, mockObjectMapper, GRAYLOG_ENDPOINT);
+    graylogSender = new GraylogSender(mockHttpClient, mockObjectMapper);
+    graylogSender.setGrayLogUrl(GRAYLOG_ENDPOINT);
   }
 
+  /**
+   * tests a message is sent successfully to the server
+   * @throws Exception
+   */
   @Test
   public void testSendMessageSuccess() throws Exception {
     // Mock the Call and Response
@@ -51,10 +57,14 @@ public class GraylogSenderTest {
     when(mockCall.execute()).thenReturn(mockResponse);
     when(mockHttpClient.newCall(any(Request.class))).thenReturn(mockCall);
 
-    LogMessage logMessage = new LogMessage();
-    Assert.assertTrue(graylogSender.sendGelfMessage(logMessage));
+    GelfMessage gelfMessage = new GelfMessage();
+    assertTrue(graylogSender.sendGelfMessage(gelfMessage));
   }
 
+  /**
+   * tests a message is not sent successfully to the server; the response code is 500
+   * @throws Exception
+   */
   @Test
   public void testSendGelfMessageFailure() throws IOException {
     // Mock the Call and Response
@@ -70,14 +80,18 @@ public class GraylogSenderTest {
     when(mockCall.execute()).thenReturn(mockResponse);
     when(mockHttpClient.newCall(any(Request.class))).thenReturn(mockCall);
 
-    LogMessage logMessage = new LogMessage();
-    Assert.assertFalse(graylogSender.sendGelfMessage(logMessage));
+    GelfMessage gelfMessage = new GelfMessage();
+    assertFalse(graylogSender.sendGelfMessage(gelfMessage));
   }
 
+  /**
+   * tests an exception is thrown when the request to the server throws an exception.
+   * @throws Exception
+   */
   @Test
   public void testSendGelfMessageException() throws IOException {
 
-    LogMessage logMessage = new LogMessage();
+    GelfMessage gelfMessage = new GelfMessage();
 
     Call mockCall = mock(Call.class);
     when(mockHttpClient.newCall(any(Request.class))).thenReturn(mockCall);
@@ -85,7 +99,7 @@ public class GraylogSenderTest {
     when(mockObjectMapper.writeValueAsString(any())).thenReturn("{}");
     // Mock the httpClient to throw an IOException
     assertThrows(IOException.class, () -> {
-      graylogSender.sendGelfMessage(logMessage);
+      graylogSender.sendGelfMessage(gelfMessage);
     });
   }
 
