@@ -1,22 +1,32 @@
-Graylog-task
+# Graylog-task
 
 The project is a CLI tools that reads a log file and validates it with a json schema then logs the data to graylog server.
 
 
-For the project to log correctly, make sure that graylog docker is up[https://github.com/lawrencesystems/graylog?tab=readme-ov-file] and gelf http input is enabled and uses port[12201].
-Then run App class with arguments:<br/>
--f/--file $AbsoluteFilePath
+For the project to log correctly; please follow the following steps:
+* Make sure that [graylog docker](https://github.com/lawrencesystems/graylog?tab=readme-ov-file) is up
+* Make sure that the 'gelf http' input is enabled and uses port[12201].
+* Then run App class with arguments:<br/>
+&emsp; &emsp; -f/--file $AbsoluteFilePath
 
+## Test cases:
+>   mvn clean verify
 
-<b>Assumptions:</b>
-<li>The sample file reflects the correct schema[sample-messages.txt] and all fields are required.</li>
-<li>The files that will be processed are small and can fit in memory. If that's not the case, Another approach should be used. For example, reading the file line by line using BufferedFileReader.</li>
-<li>There is no time constraint. If the application is slow, other approaches can be used. For example, using threads and bulk sending the messages to the server.</li>
+## Assumptions:
+* The sample file reflects the correct schema[sample-messages.txt] and all fields are required.
+* The files that will be processed are small and can fit in memory. If that's not the case, Another approach should be used. For example, reading the file line by line using BufferedFileReader.
+* There is no time constraint. If the application is slow, other approaches can be used. For example, using threads and bulk sending the messages to the server.
 
-This is how the message appear on the search page[http://localhost:9000/search]<br/>
+## Results:
+This is how the message appear on the [search page](http://localhost:9000/search)<br/>
 ![img.png](img.png)<br/>
+
+
 This is how the fields look
 ![img_1.png](img_1.png)
+![img_2.png](img_2.png)
+
+## Schema:
 The schema that the input files must fulfill:<br/>
 ```json
 {

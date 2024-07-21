@@ -26,6 +26,7 @@ public class App  implements CommandLineRunner {
   private final LoggingService loggingService;
   private final CmdOptionsHandler cmdOptionsHandler;
 
+  @Autowired
   public App(LoggingService loggingService, CmdOptionsHandler cmdOptionsHandler) {
     this.loggingService = loggingService;
     this.cmdOptionsHandler = cmdOptionsHandler;
@@ -37,7 +38,6 @@ public class App  implements CommandLineRunner {
 
   @Override
   public void run(String[] args) {
-//    args = new String[]{"-f", "C:\\projects\\graylog\\graylog-task\\sample-messages.txt"};
     logger.info("App starting....");
     String fileName = cmdOptionsHandler.assignAndGetOptions(args);
     if (fileName != null) {
