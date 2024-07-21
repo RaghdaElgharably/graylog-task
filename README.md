@@ -19,12 +19,12 @@ For the project to log correctly; please follow the following steps:
 
 ## Results:
 This is how the message appear on the [search page](http://localhost:9000/search)<br/>
-![img.png](img.png)<br/>
+![img.png](src/main/resources/images/img.png)<br/>
 
 
 This is how the fields look
-![img_1.png](img_1.png)
-![img_2.png](img_2.png)
+![img_1.png](src/main/resources/images/img_1.png)
+![img_2.png](src/main/resources/images/img_2.png)
 
 ## Schema:
 The schema that the input files must fulfill:<br/>
